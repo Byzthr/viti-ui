@@ -19,12 +19,12 @@ La app necesita en su `vite.config.ts`:
 ```ts
 resolve: { dedupe: ['vue'] },
 optimizeDeps: { exclude: ['viti-ui'] },
-test: { server: { deps: { inline: ['viti-ui'] } } },
 ```
 
-- `dedupe`: una sola copia de Vue aunque `viti-ui` esté enlazada con `npm link`.
+- `dedupe`: una sola copia de Vue aunque `viti-ui` esté enlazada con `npm link`, que trae su propio `vue` de desarrollo.
 - `optimizeDeps.exclude`: el preempaquetado de dependencias de Vite no compila `.vue`.
-- `deps.inline`: Vitest tiene que compilar los `.ts` de `viti-ui`, que Node no carga por sí solo.
+
+Vitest no necesita nada: ya compila los `.ts` y `.vue` de las dependencias.
 
 ## Desarrollar enlazado
 
@@ -37,7 +37,9 @@ npm link
 npm link viti-ui
 ```
 
-Al terminar, `npm unlink viti-ui` y `npm ci` en la app vuelven a la versión de su `package.json`.
+Vite tiene en caché dónde resolvió `viti-ui`: tras enlazar o desenlazar, reiniciar su servidor de desarrollo.
+
+Al terminar, basta `npm ci` en la app para volver a la versión de su `package.json`. **No usar `npm unlink viti-ui`**: quita la dependencia del `package.json`. Para borrar también el enlace global, `npm unlink -g viti-ui` aquí.
 
 ## Publicar una versión
 
