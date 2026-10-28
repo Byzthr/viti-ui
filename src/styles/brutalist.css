@@ -1,0 +1,113 @@
+/*
+ * Look "Neobrutalista": pop neo-brutalism: thick ink outlines, hard unblurred shadows and
+ * bright flat colors on a cream halftone page. It only applies while <html> has
+ * data-style="brutalist" (see useLook); everything it does not set comes from style.css. Its
+ * rules beat style.css's by being more specific or by coming after it, so it is imported after
+ * it in main.ts.
+ */
+:root[data-style='brutalist'] {
+  /* Palette: ink for every line, cream for the page, electric violet for the accent, mint for
+     what is done and bubblegum pink for what is happening now. */
+  --palette-ink: #121212;
+  --palette-haze: #fff3d1;
+  --palette-iris: #6a4cff;
+  --palette-mint: #18c98a;
+  --palette-peach: #ff6fa3;
+
+  /* Base colors. */
+  --color-page: var(--palette-haze);
+  --color-surface: #ffffff;
+  --color-text: var(--palette-ink);
+  --color-primary: var(--palette-iris);
+  --color-primary-strong: color-mix(in srgb, var(--palette-iris) 75%, var(--palette-ink));
+  --color-danger: #ff3b30;
+
+  /* The outline of every card and the color of the shadow it drops. */
+  --brutal-line: var(--palette-ink);
+  --brutal-drop: var(--palette-ink);
+  --page-dots: color-mix(in srgb, var(--palette-ink) 9%, transparent);
+
+  /* Strong lines: inputs and dividers are drawn, not hinted. Hover lights things up in yellow
+     marker. */
+  --color-border: color-mix(in srgb, var(--color-text) 80%, var(--color-surface));
+  --color-border-soft: color-mix(in srgb, var(--color-text) 20%, var(--color-surface));
+  --color-hover: color-mix(in srgb, #ffd23f 40%, var(--color-surface));
+  --color-soft: color-mix(in srgb, var(--color-primary) 20%, var(--color-surface));
+  --color-soft-strong: color-mix(in srgb, var(--color-primary) 32%, var(--color-surface));
+  --sidebar-active-glow: var(--brutal-drop);
+
+  /* Shape: chunky but still rounded. */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* Elevation: an ink outline and a solid shadow, the higher the further it drops. */
+  --shadow-soft: 0 0 0 1.5px var(--brutal-line), 3.5px 3.5px 0 var(--brutal-drop);
+  --shadow-raised: 0 0 0 2px var(--brutal-line), 5px 5px 0 2px var(--brutal-drop);
+  --shadow-float: 0 0 0 2.5px var(--brutal-line), 9px 9px 0 2.5px var(--brutal-drop);
+  --color-backdrop: color-mix(in srgb, var(--palette-ink) 45%, transparent);
+
+  /* Type: Segoe for the text; titles in the heaviest weight Windows has. */
+  --font-sans: 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Segoe UI Black', 'Arial Black', 'Segoe UI', sans-serif;
+  --font-mono: 'Cascadia Code', ui-monospace, Consolas, monospace;
+
+  /* Space between wishlist columns, between stacked sections and above the footer: shadows
+     need room. */
+  --section-gap: 1.75rem;
+}
+
+:root[data-style='brutalist'][data-theme='dark'] {
+  --color-page: #17141f;
+  --color-surface: #221e2e;
+  --color-text: #fff3d1;
+  --color-primary: #9d87ff;
+  --color-primary-strong: color-mix(in srgb, #9d87ff 75%, white);
+  --color-on-primary: #121212;
+  --color-danger: #ff5c52;
+
+  --brutal-line: var(--color-text);
+  --brutal-drop: var(--palette-iris);
+  --page-dots: color-mix(in srgb, var(--color-text) 7%, transparent);
+  --color-border: color-mix(in srgb, var(--color-text) 70%, var(--color-surface));
+  --color-border-soft: color-mix(in srgb, var(--color-text) 18%, var(--color-surface));
+  --color-hover: color-mix(in srgb, #ffd23f 16%, var(--color-surface));
+  --sidebar-shadow: color-mix(in srgb, black 50%, transparent);
+  --console-bg: #0f0d15;
+  --console-bar: #18151f;
+  --color-backdrop: color-mix(in srgb, black 60%, transparent);
+}
+
+/* Cream page with a coarse halftone, still while the content scrolls over it. */
+:root[data-style='brutalist'] body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background:
+    radial-gradient(circle, var(--page-dots) 1.5px, transparent 2px) 0 0 / 14px 14px,
+    var(--color-page);
+  background-attachment: fixed;
+  accent-color: var(--color-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+:root[data-style='brutalist'] ::selection {
+  color: var(--palette-ink);
+  background: #ffd23f;
+}
+
+/* Titles loud and tight. */
+:root[data-style='brutalist'] h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.25rem 0 1.5rem;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}

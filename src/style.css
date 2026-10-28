@@ -1,0 +1,251 @@
+/*
+ * Global design tokens. Every color of the interface comes from here: the five palette colors
+ * first, then the roles built from them. Components use the roles (--color-*, --status-*,
+ * --sidebar-*, --console-*), never a literal color, so changing the look means editing this block.
+ *
+ * Light and dark: the theme is the data-theme attribute of <html>, which useTheme sets from the
+ * system setting or the choice made in the menu. Almost every role is mixed from three base
+ * colors (page, surface and text), so the dark theme only redefines those and a few accents.
+ */
+:root {
+  /* Both are declared so the browser never paints its own automatic dark version on top. */
+  color-scheme: light dark;
+
+  /* Palette: a twilight sky. Ink and haze are its two ends, iris the main accent, mint what is
+     done or right, and peach the warm touch for what is happening now. */
+  --palette-ink: #262a4a;
+  --palette-haze: #f3f1fa;
+  --palette-iris: #6b5ce7;
+  --palette-mint: #3ec5a2;
+  --palette-peach: #ff9e7d;
+
+  /* Base colors: the only ones the dark theme changes, besides the accents below. */
+  --color-page: color-mix(in srgb, var(--palette-haze) 70%, white);
+  --color-surface: #ffffff;
+  --color-text: var(--palette-ink);
+  --color-primary: var(--palette-iris);
+  --color-primary-strong: color-mix(in srgb, var(--palette-iris) 78%, var(--palette-ink));
+  --color-danger: #e5484d;
+  --wash-strength: 24%;
+
+  /* Surfaces and text. A panel is a see-through surface that groups others, so the page's glow
+     shows through it. */
+  --color-panel: color-mix(in srgb, var(--color-surface) 55%, transparent);
+  --color-surface-alt: color-mix(in srgb, var(--color-text) 3%, var(--color-surface));
+  --color-hover: color-mix(in srgb, var(--color-primary) 7%, var(--color-surface));
+  --color-text-soft: color-mix(in srgb, var(--color-text) 80%, var(--color-surface));
+  --color-text-muted: color-mix(in srgb, var(--color-text) 62%, var(--color-surface));
+  --color-text-faint: color-mix(in srgb, var(--color-text) 42%, var(--color-surface));
+  --color-border: color-mix(in srgb, var(--color-text) 14%, var(--color-surface));
+  --color-border-soft: color-mix(in srgb, var(--color-text) 8%, var(--color-surface));
+
+  /* Primary actions (buttons, active controls, focus) */
+  --color-on-primary: #ffffff;
+  --color-focus: var(--color-primary);
+  --color-ring: color-mix(in srgb, var(--color-primary) 28%, transparent);
+  --glow-primary: color-mix(in srgb, var(--color-primary) 32%, transparent);
+  --glow-primary-soft: color-mix(in srgb, var(--color-primary) 14%, transparent);
+  --color-soft: color-mix(in srgb, var(--color-primary) 13%, var(--color-surface));
+  --color-soft-strong: color-mix(in srgb, var(--color-primary) 24%, var(--color-surface));
+  --color-soft-faint: color-mix(in srgb, var(--color-primary) 6%, var(--color-surface));
+  --color-line-hover: color-mix(in srgb, var(--color-primary) 45%, var(--color-surface));
+
+  /* Dragging feedback (placeholder) */
+  --color-drag: var(--palette-mint);
+  --color-drag-fill: color-mix(in srgb, var(--palette-mint) 12%, transparent);
+
+  /* Confetti of a birthday just added */
+  --confetti-1: var(--palette-iris);
+  --confetti-2: var(--palette-mint);
+  --confetti-3: var(--palette-peach);
+  --confetti-4: color-mix(in srgb, var(--palette-iris) 50%, var(--palette-mint));
+
+  /* Calendar events */
+  --color-event: var(--palette-mint);
+  --color-now: var(--palette-peach);
+
+  /* Holidays: their flag, the cards and lists that name them, and the date of their days */
+  --color-holiday: var(--palette-peach);
+  --color-holiday-soft: color-mix(in srgb, var(--palette-peach) 16%, var(--color-surface));
+  --color-holiday-text: color-mix(in srgb, var(--palette-peach) 72%, var(--color-text));
+
+  /* Bands of the all-day events in the month grid: one tone each, so events next to or over
+     each other never share one */
+  --ribbon-tone-1: var(--palette-mint);
+  --ribbon-tone-2: var(--palette-iris);
+  --ribbon-tone-3: var(--palette-peach);
+  --ribbon-tone-4: color-mix(in srgb, var(--palette-iris) 50%, var(--palette-mint));
+
+  /* Row status: active, done and deleted */
+  --status-active-tint: var(--color-surface);
+  --status-active-tint-hover: var(--color-hover);
+  --status-active-accent: var(--color-primary);
+  --status-active-glow: color-mix(in srgb, var(--color-primary) 16%, transparent);
+  --status-done-tint: color-mix(in srgb, var(--palette-mint) 9%, var(--color-surface));
+  --status-done-tint-hover: color-mix(in srgb, var(--palette-mint) 16%, var(--color-surface));
+  --status-done-accent: var(--palette-mint);
+  --status-done-glow: color-mix(in srgb, var(--palette-mint) 20%, transparent);
+  --status-deleted-tint: color-mix(in srgb, var(--color-danger) 7%, var(--color-surface));
+  --status-deleted-tint-hover: color-mix(in srgb, var(--color-danger) 13%, var(--color-surface));
+  --status-deleted-accent: var(--color-danger);
+  --status-deleted-glow: color-mix(in srgb, var(--color-danger) 18%, transparent);
+
+  /* Danger: destructive actions, errors and deleted items. Not part of the palette. */
+  --color-danger-strong: color-mix(in srgb, var(--color-danger) 82%, black);
+  --color-danger-soft: color-mix(in srgb, var(--color-danger) 12%, var(--color-surface));
+  --color-danger-border: color-mix(in srgb, var(--color-danger) 30%, var(--color-surface));
+  --color-danger-faint: color-mix(in srgb, var(--color-danger) 5%, var(--color-surface));
+  --color-danger-text: color-mix(in srgb, var(--color-danger) 72%, var(--color-text));
+  --glow-danger: color-mix(in srgb, var(--color-danger) 30%, transparent);
+
+  /* Sidebar: it has no background of its own, it floats over the page's glow. */
+  --sidebar-bg: transparent;
+  --sidebar-text: var(--color-text-soft);
+  --sidebar-muted: var(--color-text-muted);
+  --sidebar-hover: color-mix(in srgb, var(--color-text) 6%, transparent);
+  --sidebar-active: var(--color-surface);
+  --sidebar-active-text: var(--color-primary);
+  --sidebar-active-glow: color-mix(in srgb, var(--palette-ink) 10%, transparent);
+  --sidebar-focus: var(--color-primary);
+  --sidebar-shadow: color-mix(in srgb, var(--palette-ink) 22%, transparent);
+
+  /* Console: a dark terminal in both themes */
+  --console-bg: color-mix(in srgb, var(--palette-ink) 78%, black);
+  --console-bar: color-mix(in srgb, var(--palette-ink) 92%, black);
+  --console-dot: color-mix(in srgb, var(--palette-haze) 30%, var(--palette-ink));
+  --console-text: color-mix(in srgb, var(--palette-haze) 88%, var(--palette-ink));
+  --console-strong: var(--palette-haze);
+  --console-muted: color-mix(in srgb, var(--palette-haze) 62%, var(--palette-ink));
+  --console-faint: color-mix(in srgb, var(--palette-haze) 42%, var(--palette-ink));
+  --console-accent: var(--palette-mint);
+  --console-error: color-mix(in srgb, var(--color-danger) 60%, white);
+  --console-shadow: color-mix(in srgb, var(--palette-ink) 30%, transparent);
+  --console-selection: color-mix(in srgb, var(--console-accent) 30%, transparent);
+
+  /* Shape: the bigger the element, the rounder; pills for tags and small toggles. */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  /* Elevation: only what floats over the page casts a real shadow. */
+  --shadow-soft: 0 1px 2px color-mix(in srgb, var(--palette-ink) 6%, transparent);
+  --shadow-raised:
+    0 1px 2px color-mix(in srgb, var(--palette-ink) 6%, transparent),
+    0 8px 24px color-mix(in srgb, var(--palette-ink) 8%, transparent);
+  --shadow-float:
+    0 2px 6px color-mix(in srgb, var(--palette-ink) 8%, transparent),
+    0 24px 48px color-mix(in srgb, var(--palette-ink) 18%, transparent);
+  --color-backdrop: color-mix(in srgb, var(--palette-ink) 40%, transparent);
+
+  /* Type: Windows 11's own family, Display for titles and Text for everything else. */
+  --font-sans: 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Cascadia Code', ui-monospace, Consolas, monospace;
+
+  /* Space between wishlist columns, between stacked sections and above the footer. */
+  --section-gap: 1.5rem;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-page: color-mix(in srgb, var(--palette-ink) 62%, black);
+  --color-surface: color-mix(in srgb, var(--palette-ink) 88%, black);
+  --color-text: color-mix(in srgb, var(--palette-haze) 94%, var(--palette-iris));
+  --color-primary: color-mix(in srgb, var(--palette-iris) 72%, white);
+  --color-primary-strong: color-mix(in srgb, var(--palette-iris) 55%, white);
+  --color-on-primary: color-mix(in srgb, var(--palette-ink) 80%, black);
+  --color-danger: #f2555a;
+  --wash-strength: 22%;
+
+  --color-border: color-mix(in srgb, var(--color-text) 16%, var(--color-surface));
+  --color-border-soft: color-mix(in srgb, var(--color-text) 9%, var(--color-surface));
+  --color-hover: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+  --sidebar-active-glow: color-mix(in srgb, black 30%, transparent);
+  --sidebar-shadow: color-mix(in srgb, black 50%, transparent);
+  --console-bg: color-mix(in srgb, var(--palette-ink) 45%, black);
+  --console-bar: color-mix(in srgb, var(--palette-ink) 60%, black);
+
+  --shadow-soft: 0 1px 2px color-mix(in srgb, black 30%, transparent);
+  --shadow-raised:
+    0 1px 2px color-mix(in srgb, black 30%, transparent),
+    0 8px 24px color-mix(in srgb, black 30%, transparent);
+  --shadow-float:
+    0 2px 6px color-mix(in srgb, black 30%, transparent),
+    0 24px 48px color-mix(in srgb, black 50%, transparent);
+  --color-backdrop: color-mix(in srgb, black 55%, transparent);
+}
+
+/* The scrollbar's room is kept even on short pages, so the content doesn't shift sideways when
+   switching to a page (or calendar view) tall enough to need it. */
+html {
+  scrollbar-gutter: stable;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+/* The page's one flourish: a faint glow of the palette's two warm and cool ends. It stays still
+   while the content scrolls over it. */
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background:
+    radial-gradient(
+      70rem 40rem at -10% -10%,
+      color-mix(in srgb, var(--palette-iris) var(--wash-strength), transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      60rem 40rem at 110% 110%,
+      color-mix(in srgb, var(--palette-peach) var(--wash-strength), transparent),
+      transparent 70%
+    ),
+    var(--color-page);
+  background-attachment: fixed;
+  accent-color: var(--color-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-soft-strong);
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/*
+ * While a section is being dragged nothing under the pointer reacts: no hover effects, no
+ * pointer cursor, no text selection. The drag only reads the pointer position.
+ */
+body.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+body.is-dragging * {
+  pointer-events: none;
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0.25rem 0 1.25rem;
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}

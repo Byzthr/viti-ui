@@ -1,0 +1,117 @@
+/*
+ * Look "Revista": an editorial magazine: warm newsprint, Sitka serifs, terracotta and olive
+ * inks, thin rules and a double rule under titles. It only applies while <html> has
+ * data-style="editorial" (see useLook); everything it does not set comes from style.css. Its
+ * rules beat style.css's by being more specific or by coming after it, so it is imported after
+ * it in main.ts.
+ */
+:root[data-style='editorial'] {
+  /* Palette: brown-black ink, newsprint, terracotta for the accent, olive for what is done and
+     mustard for what is happening now. */
+  --palette-ink: #2b2520;
+  --palette-haze: #f2ebde;
+  --palette-iris: #b8532d;
+  --palette-mint: #66843a;
+  --palette-peach: #d99a2b;
+
+  /* Base colors. */
+  --color-page: var(--palette-haze);
+  --color-surface: #fbf7ef;
+  --color-text: var(--palette-ink);
+  --color-primary: var(--palette-iris);
+  --color-primary-strong: color-mix(in srgb, var(--palette-iris) 78%, var(--palette-ink));
+  --color-danger: #b42318;
+
+  --color-hover: color-mix(in srgb, var(--color-primary) 6%, var(--color-surface));
+  --color-border: color-mix(in srgb, var(--color-text) 20%, var(--color-surface));
+  --color-border-soft: color-mix(in srgb, var(--color-text) 11%, var(--color-surface));
+
+  /* Shape: small, printed corners. */
+  --radius-sm: 3px;
+  --radius-md: 5px;
+  --radius-lg: 8px;
+  --radius-pill: 999px;
+
+  /* Elevation: surfaces are framed by a thin rule and sit on the page with a short, warm
+     shadow, like a card laid on a table. */
+  --shadow-soft:
+    0 0 0 1px var(--color-border-soft),
+    0 2px 0 color-mix(in srgb, var(--palette-ink) 7%, transparent);
+  --shadow-raised:
+    0 0 0 1px var(--color-border-soft),
+    0 10px 24px color-mix(in srgb, var(--palette-ink) 12%, transparent);
+  --shadow-float:
+    0 0 0 1px var(--color-border),
+    0 24px 48px color-mix(in srgb, var(--palette-ink) 20%, transparent);
+  --color-backdrop: color-mix(in srgb, var(--palette-ink) 40%, transparent);
+
+  /* Type: Sitka throughout, its Text cut for reading and its Heading cut for titles. */
+  --font-sans: 'Sitka Text', Georgia, 'Times New Roman', serif;
+  --font-display: 'Sitka Heading', 'Sitka Display', Georgia, serif;
+  --font-mono: 'Cascadia Code', ui-monospace, Consolas, monospace;
+
+  /* Space between wishlist columns, between stacked sections and above the footer. */
+  --section-gap: 1.6rem;
+}
+
+:root[data-style='editorial'][data-theme='dark'] {
+  --color-page: #1a1613;
+  --color-surface: #24201b;
+  --color-text: #efe6d6;
+  --color-primary: #e0835a;
+  --color-primary-strong: color-mix(in srgb, #e0835a 75%, white);
+  --color-on-primary: #1a1613;
+  --color-danger: #f0645a;
+
+  --color-border: color-mix(in srgb, var(--color-text) 18%, var(--color-surface));
+  --color-border-soft: color-mix(in srgb, var(--color-text) 10%, var(--color-surface));
+  --color-hover: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+  --sidebar-active-glow: color-mix(in srgb, black 30%, transparent);
+  --sidebar-shadow: color-mix(in srgb, black 50%, transparent);
+  --console-bg: #110e0c;
+  --console-bar: #1a1613;
+
+  --shadow-soft: 0 0 0 1px var(--color-border-soft), 0 2px 0 color-mix(in srgb, black 30%, transparent);
+  --shadow-raised: 0 0 0 1px var(--color-border-soft), 0 10px 24px color-mix(in srgb, black 40%, transparent);
+  --shadow-float: 0 0 0 1px var(--color-border), 0 24px 48px color-mix(in srgb, black 55%, transparent);
+  --color-backdrop: color-mix(in srgb, black 55%, transparent);
+}
+
+/* Newsprint: a faint warm vignette towards the corners, still while the content scrolls. */
+:root[data-style='editorial'] body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-text);
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 55%,
+      color-mix(in srgb, var(--palette-peach) 10%, transparent)
+    ),
+    var(--color-page);
+  background-attachment: fixed;
+  accent-color: var(--color-primary);
+  font-variant-numeric: oldstyle-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root[data-style='editorial'] ::selection {
+  background: color-mix(in srgb, var(--palette-peach) 35%, transparent);
+}
+
+/* Titles as a magazine's section heads: large serif over a double rule. */
+:root[data-style='editorial'] h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0.25rem 0 1.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 3px double var(--color-border);
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}

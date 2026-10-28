@@ -1,0 +1,41 @@
+{
+  "name": "viti-ui",
+  "version": "1.0.0",
+  "description": "Shared Vue 3 components, composables, utilities and styles for the Viti apps",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "files": [
+    "src",
+    "!src/**/*.test.ts"
+  ],
+  "exports": {
+    "./components/*.vue": "./src/components/*.vue",
+    "./components/*": "./src/components/*.ts",
+    "./composables/*": "./src/composables/*.ts",
+    "./utils/*": "./src/utils/*.ts",
+    "./style.css": "./src/style.css",
+    "./styles/*": "./src/styles/*"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "lint": "eslint .",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.9",
+    "@vue/eslint-config-typescript": "^14.9.0",
+    "eslint": "^10.12.0",
+    "eslint-plugin-vue": "^10.11.1",
+    "typescript": "~5.9",
+    "vite": "^8.3.5",
+    "vitest": "^4.1.12",
+    "vue": "^3.5.43",
+    "vue-tsc": "^3.3.11"
+  }
+}

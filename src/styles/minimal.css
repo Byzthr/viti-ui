@@ -1,0 +1,110 @@
+/*
+ * Look "Minimalista": Swiss minimal: near black on near white, hairlines instead of shadows,
+ * almost square corners and one international orange accent. It only applies while <html> has
+ * data-style="minimal" (see useLook); everything it does not set comes from style.css. Its
+ * rules beat style.css's by being more specific or by coming after it, so it is imported after
+ * it in main.ts.
+ */
+:root[data-style='minimal'] {
+  /* Palette: ink and paper, one orange that does all the pointing, a green for what is done
+     and an amber for what is happening now. */
+  --palette-ink: #141414;
+  --palette-haze: #f4f4f1;
+  --palette-iris: #ff4f1f;
+  --palette-mint: #1f9d6b;
+  --palette-peach: #ffb000;
+
+  /* Base colors. */
+  --color-page: var(--palette-haze);
+  --color-surface: #ffffff;
+  --color-text: var(--palette-ink);
+  --color-primary: var(--palette-iris);
+  --color-primary-strong: color-mix(in srgb, var(--palette-iris) 82%, var(--palette-ink));
+  --color-danger: #d92d20;
+
+  /* Hovering greys a row instead of tinting it: the orange is only for what is chosen. */
+  --color-hover: color-mix(in srgb, var(--color-text) 4%, var(--color-surface));
+  --color-soft: color-mix(in srgb, var(--color-primary) 9%, var(--color-surface));
+  --color-soft-strong: color-mix(in srgb, var(--color-primary) 18%, var(--color-surface));
+  --sidebar-active-text: var(--color-text);
+
+  /* Shape: barely rounded; pills stay for the small toggles. */
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-pill: 999px;
+
+  /* Elevation: a hairline is enough to separate surfaces; only what floats gets a shadow. */
+  --shadow-soft: 0 0 0 1px var(--color-border-soft);
+  --shadow-raised: 0 0 0 1px var(--color-border), 0 6px 16px color-mix(in srgb, black 6%, transparent);
+  --shadow-float: 0 0 0 1px var(--color-border), 0 20px 40px color-mix(in srgb, black 12%, transparent);
+  --color-backdrop: color-mix(in srgb, var(--palette-ink) 35%, transparent);
+
+  /* Type: Windows' own Segoe for the text, Bahnschrift (a DIN) for titles. */
+  --font-sans: 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Bahnschrift', 'DIN Alternate', 'Segoe UI Variable Display', sans-serif;
+  --font-mono: 'Cascadia Code', ui-monospace, Consolas, monospace;
+
+  /* Space between wishlist columns, between stacked sections and above the footer. */
+  --section-gap: 1.75rem;
+}
+
+:root[data-style='minimal'][data-theme='dark'] {
+  --color-page: #0e0e0e;
+  --color-surface: #171717;
+  --color-text: #ededea;
+  --color-primary: #ff6a3d;
+  --color-primary-strong: color-mix(in srgb, #ff6a3d 80%, white);
+  --color-on-primary: #0e0e0e;
+  --color-danger: #ff5a4e;
+
+  --color-border: color-mix(in srgb, var(--color-text) 16%, var(--color-surface));
+  --color-border-soft: color-mix(in srgb, var(--color-text) 10%, var(--color-surface));
+  --color-hover: color-mix(in srgb, var(--color-text) 6%, var(--color-surface));
+  --sidebar-active-glow: transparent;
+  --sidebar-shadow: color-mix(in srgb, black 50%, transparent);
+  --console-bg: #0a0a0a;
+  --console-bar: #121212;
+
+  --shadow-raised: 0 0 0 1px var(--color-border), 0 6px 16px color-mix(in srgb, black 40%, transparent);
+  --shadow-float: 0 0 0 1px var(--color-border), 0 20px 40px color-mix(in srgb, black 60%, transparent);
+  --color-backdrop: color-mix(in srgb, black 60%, transparent);
+}
+
+/* The page is plain; its one mark is the orange rule along the top edge. */
+:root[data-style='minimal'] body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-text);
+  background:
+    linear-gradient(var(--color-primary), var(--color-primary)) top / 100% 4px no-repeat,
+    var(--color-page);
+  background-attachment: fixed;
+  accent-color: var(--color-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+:root[data-style='minimal'] ::selection {
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+}
+
+/* Titles as signage: condensed capitals, set wide, with a short orange bar above them. */
+:root[data-style='minimal'] h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.25rem 0 1.5rem;
+  padding-top: 0.9rem;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 600;
+  font-stretch: condensed;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  background: linear-gradient(var(--color-primary), var(--color-primary)) top left / 2.25rem 3px
+    no-repeat;
+}
