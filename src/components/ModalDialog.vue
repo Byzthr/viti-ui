@@ -1,13 +1,19 @@
 <script setup lang="ts">
 // The dialog every form of the app opens in: backdrop, title, error, the fields from the default
-// slot and the Cancel / Save buttons, plus Delete when the form edits something that exists.
+// slot and the Cancel / submit buttons (Save unless submitLabel says otherwise, in the destructive
+// red when danger is set), plus Delete when the form edits something that exists.
 // Closes on Esc, on a click outside or on Cancel; the fields keep their own state.
-defineProps<{
-  open: boolean
-  title: string
-  error?: string | null
-  deletable?: boolean
-}>()
+withDefaults(
+  defineProps<{
+    open: boolean
+    title: string
+    error?: string | null
+    deletable?: boolean
+    submitLabel?: string
+    danger?: boolean
+  }>(),
+  { submitLabel: 'Guardar' },
+)
 
 const emit = defineEmits<{ close: []; submit: []; remove: [] }>()
 
@@ -28,7 +34,7 @@ const titleId = `modal-title-${Math.random().toString(36).slice(2)}`
                 Eliminar
               </button>
               <button type="button" class="cancel" @click="emit('close')">Cancelar</button>
-              <button type="submit" class="save">Guardar</button>
+              <button type="submit" class="save" :class="{ danger }">{{ submitLabel }}</button>
             </div>
           </form>
         </div>
@@ -188,6 +194,16 @@ form {
 .save:hover {
   background: var(--color-primary-strong);
   box-shadow: 0 4px 12px var(--glow-primary);
+}
+
+.save.danger {
+  border-color: var(--color-danger);
+  background: var(--color-danger);
+}
+
+.save.danger:hover {
+  background: var(--color-danger);
+  box-shadow: 0 4px 12px var(--glow-danger);
 }
 
 .delete:focus-visible,
