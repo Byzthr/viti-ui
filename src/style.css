@@ -26,6 +26,9 @@
   --color-primary: var(--palette-iris);
   --color-primary-strong: color-mix(in srgb, var(--palette-iris) 78%, var(--palette-ink));
   --color-danger: #e5484d;
+  /* Like the danger red, outside the palette: warning yellow and the blue of what is starting. */
+  --color-warning: #c08a12;
+  --color-info: #3d6fd8;
   --wash-strength: 24%;
 
   /* Surfaces and text. A panel is a see-through surface that groups others, so the page's glow
@@ -98,6 +101,14 @@
   --color-danger-text: color-mix(in srgb, var(--color-danger) 72%, var(--color-text));
   --glow-danger: color-mix(in srgb, var(--color-danger) 30%, transparent);
 
+  /* State of a running service: healthy, near its limit, down, starting, restarting, stopped. */
+  --status-ok: var(--palette-mint);
+  --status-warn: var(--color-warning);
+  --status-down: var(--color-danger);
+  --status-starting: var(--color-info);
+  --status-restarting: var(--palette-iris);
+  --status-stopped: var(--color-text-faint);
+
   /* Sidebar: it has no background of its own, it floats over the page's glow. */
   --sidebar-bg: transparent;
   --sidebar-text: var(--color-text-soft);
@@ -161,6 +172,8 @@
   --color-primary-strong: color-mix(in srgb, var(--palette-iris) 55%, white);
   --color-on-primary: color-mix(in srgb, var(--palette-ink) 80%, black);
   --color-danger: #f2555a;
+  --color-warning: #e0b44c;
+  --color-info: #5b8def;
   --wash-strength: 22%;
 
   --color-border: color-mix(in srgb, var(--color-text) 16%, var(--color-surface));
