@@ -12,7 +12,7 @@ En el `package.json` de la app, con una versión concreta:
 "viti-ui": "github:Byzthr/viti-ui#v1.0.0"
 ```
 
-Se importa por ruta: `viti-ui/components/ViewSwitcher.vue`, `viti-ui/components/menuItem`, `viti-ui/composables/useTableSort`, `viti-ui/utils/moveBefore`, `viti-ui/style.css`, `viti-ui/styles/minimal.css`.
+Se importa por ruta: `viti-ui/components/VViewSwitcher.vue`, `viti-ui/components/menuItem`, `viti-ui/composables/useTableSort`, `viti-ui/utils/moveBefore`, `viti-ui/style.css`, `viti-ui/styles/minimal.css`.
 
 La app necesita en su `vite.config.ts`:
 
