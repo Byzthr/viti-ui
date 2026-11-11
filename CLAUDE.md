@@ -43,7 +43,7 @@ Las rutas públicas (`viti-ui/components/X.vue`, `viti-ui/composables/useX`, `vi
 
 ## Mecánicas que las apps usan siempre
 
-- Selector horizontal con una sola opción activa: `ViewSwitcher.vue`.
+- Selector con una sola opción activa, horizontal o vertical: `VViewSwitcher.vue` (pastilla, pestañas de ventana o vertical).
 - Acciones ocasionales de una lista: menú de tres puntos con `OptionsMenu.vue`.
 - Tablas ordenables por cualquier columna: `SortableHeader.vue` con `useTableSort`.
 - Arrastrar para reordenar: `useListDrag`, sin librerías ni drag and drop nativo.
