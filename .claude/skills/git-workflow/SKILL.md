@@ -29,7 +29,7 @@ Cuando el usuario pide el commit se sigue el apartado 3. Los cambios sin commite
 ## 3. Commits
 
 - [Conventional Commits](https://www.conventionalcommits.org/): `<tipo>(<ámbito opcional>): <descripción>`.
-- Tipos: `feat`, `fix`, `docs`, `style` (formato o estilos sin cambio de lógica), `refactor`, `test`, `chore` (mantenimiento, configuración), `build`, `ci`, `perf`. Ámbito opcional: la pieza o el área (`ViewSwitcher`, `styles`...).
+- Tipos: `feat`, `fix`, `docs`, `style` (formato o estilos sin cambio de lógica), `refactor`, `test`, `chore` (mantenimiento, configuración), `build`, `ci`, `perf`. Ámbito opcional: la pieza o el área (`VViewSwitcher`, `styles`...).
 - **En inglés**, en imperativo y minúscula, sin punto final, máximo 72 caracteres en la primera línea.
 - Si hace falta, el cuerpo (tras una línea en blanco) explica el porqué, no repite el diff. Cambios incompatibles: `!` tras el tipo y `BREAKING CHANGE:` en el cuerpo.
 - **Un commit = un cambio lógico.** No mezclar refactors con funcionalidad. Si los cambios están mezclados en los mismos archivos y separarlos rompería el código, se hace un solo commit y el cuerpo enumera lo que incluye.
