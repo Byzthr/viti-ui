@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { fitInViewport, useContextMenu } from '../composables/useContextMenu'
+import { fitInViewport, vUseContextMenu } from '../composables/vUseContextMenu'
 import MenuList from './MenuList.vue'
 
 // The app's right-click menu, mounted once in `App.vue`; features open it with `openContextMenu`.
 // It opens at the pointer, kept inside the window, and closes with Esc, a click elsewhere, a
 // scroll or when the window changes size.
-const { current, close } = useContextMenu()
+const { current, close } = vUseContextMenu()
 
 // MenuList is generic, so `InstanceType` cannot describe it: this is what it exposes.
 const menu = ref<{ focusFirst: () => void; el: HTMLElement | null } | null>(null)

@@ -19,7 +19,7 @@ Actúa como desarrollador experto en **Vue 3**. Prioriza código simple, legible
 viti-ui/
   src/
     components/   # componentes genéricos y la lógica y tipos que van con ellos (menuItem.ts...)
-    composables/  # lógica reutilizable (useXxx)
+    composables/  # lógica reutilizable (vUseXxx)
     utils/        # funciones puras
     style.css     # paleta, roles de color y estilos base
     styles/       # los estilos distintos del de por defecto, cada uno bajo su data-style
@@ -27,13 +27,13 @@ viti-ui/
   package.json    # exports: las rutas públicas de importación
 ```
 
-Las rutas públicas (`viti-ui/components/X.vue`, `viti-ui/composables/useX`, `viti-ui/utils/x`, `viti-ui/style.css`, `viti-ui/styles/x.css`) salen de `exports` en `package.json`. Cambiarlas obliga a tocar todas las apps: es una versión mayor.
+Las rutas públicas (`viti-ui/components/X.vue`, `viti-ui/composables/vUseX`, `viti-ui/utils/x`, `viti-ui/style.css`, `viti-ui/styles/x.css`) salen de `exports` en `package.json`. Cambiarlas obliga a tocar todas las apps: es una versión mayor.
 
 ## Reglas
 
 - **Nada específico de una app.** Ni rutas, ni stores, ni API, ni clases CSS de otra app. Una pieza que necesita algo de la app lo recibe por props, slots o parámetros.
 - Usar siempre Composition API con `<script setup lang="ts">`; nunca Options API.
-- Componentes en PascalCase, composables con prefijo `use`.
+- Componentes en PascalCase, composables con prefijo `vUse` (los de cada app siguen con `use`, así se distinguen).
 - Props y emits tipados. Prohibido `any`; usar `unknown` y validar.
 - Un componente = una responsabilidad; dividir si supera ~200 líneas.
 - Antes de crear un componente, composable o utilidad, consultar `INVENTORY.md` y reutilizar lo que haya. Al crear o cambiar uno, actualizar su fila en el mismo cambio.
@@ -45,8 +45,8 @@ Las rutas públicas (`viti-ui/components/X.vue`, `viti-ui/composables/useX`, `vi
 
 - Selector con una sola opción activa, horizontal o vertical: `VViewSwitcher.vue` (pastilla, pestañas de ventana o vertical).
 - Acciones ocasionales de una lista: menú de tres puntos con `OptionsMenu.vue`.
-- Tablas ordenables por cualquier columna: `SortableHeader.vue` con `useTableSort`.
-- Arrastrar para reordenar: `useListDrag`, sin librerías ni drag and drop nativo.
+- Tablas ordenables por cualquier columna: `SortableHeader.vue` con `vUseTableSort`.
+- Arrastrar para reordenar: `vUseListDrag`, sin librerías ni drag and drop nativo.
 
 ## Comandos habituales
 

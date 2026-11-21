@@ -63,7 +63,7 @@ export function closeContextMenu() {
   current.value = null
 }
 
-export function useContextMenu() {
+export function vUseContextMenu() {
   return { current, close: closeContextMenu }
 }
 

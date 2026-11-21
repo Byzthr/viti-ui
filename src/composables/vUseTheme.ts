@@ -46,7 +46,7 @@ export function initTheme() {
   })
 }
 
-export function useTheme() {
+export function vUseTheme() {
   function toggle() {
     const next: Theme = theme.value === 'dark' ? 'light' : 'dark'
     save(next)

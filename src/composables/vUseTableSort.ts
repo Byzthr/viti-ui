@@ -13,7 +13,7 @@ export interface SortColumn<K extends string> {
 
 // Sorting by a table's columns: clicking a column sorts by it, clicking it again flips it.
 // Without an initial key the rows keep the order they came in until a column is chosen.
-export function useTableSort<T, K extends string>(
+export function vUseTableSort<T, K extends string>(
   rows: MaybeRefOrGetter<readonly T[]>,
   values: Record<K, (row: T) => SortValue>,
   initial: { key: NoInfer<K>; direction: SortDirection } | null = null,

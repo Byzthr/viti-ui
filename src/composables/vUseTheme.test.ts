@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { resolveTheme } from './useTheme'
+import { resolveTheme } from './vUseTheme'
 
 describe('resolveTheme', () => {
   it('follows the system until a theme is chosen', () => {

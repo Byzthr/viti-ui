@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
-import { LOOKS, useLook } from '../composables/useLook'
-import type { Look } from '../composables/useLook'
+import { LOOKS, vUseLook } from '../composables/vUseLook'
+import type { Look } from '../composables/vUseLook'
 
 // The look picker: a pill with the emoji of the look in use that, when pressed, grows into a
 // narrow card with the emoji of every look (the one in use on a tinted background); pressing the
@@ -12,7 +12,7 @@ import type { Look } from '../composables/useLook'
 // neighbour can make room.
 const emit = defineEmits<{ expand: [expanded: boolean] }>()
 
-const { look, select } = useLook()
+const { look, select } = vUseLook()
 
 const current = computed(() => LOOKS.find((option) => option.id === look.value) ?? LOOKS[0])
 
