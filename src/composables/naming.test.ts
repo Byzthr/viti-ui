@@ -20,4 +20,13 @@ describe('composable naming', () => {
       expect(typeof (mod as Record<string, unknown>)[nameOf(path)]).toBe('function')
     }
   })
+
+  it('no composable file still exports an old use... name', () => {
+    for (const mod of Object.values(modules)) {
+      const leftovers = Object.keys(mod as Record<string, unknown>).filter((key) =>
+        /^use[A-Z]/.test(key),
+      )
+      expect(leftovers).toEqual([])
+    }
+  })
 })
