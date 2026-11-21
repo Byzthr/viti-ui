@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useTheme } from '../composables/useTheme'
+import { vUseTheme } from '../composables/vUseTheme'
 
 // `compact` folds away the icon of the mode not in use, leaving a single round button, for when
 // something beside it needs the room.
 withDefaults(defineProps<{ compact?: boolean }>(), { compact: false })
 
-const { theme, toggle } = useTheme()
+const { theme, toggle } = vUseTheme()
 </script>
 
 <template>

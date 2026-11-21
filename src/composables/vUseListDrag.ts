@@ -40,7 +40,7 @@ interface Options {
 // Drag to reorder a vertical list. Same mechanic as the wishlist sections (see CLAUDE.md), with a
 // single column: pointer events, a ghost that follows the pointer, a placeholder marking the slot,
 // the others sliding out of the way, and insertion instead of swapping.
-export function useListDrag({ list, ids, labelOf, onMove }: Options) {
+export function vUseListDrag({ list, ids, labelOf, onMove }: Options) {
   const draggingId = ref<string | null>(null)
   const draggingHeight = ref(0)
   const slotIndex = ref<number | null>(null)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, ref } from 'vue'
-import { useListDrag } from '../composables/useListDrag'
+import { vUseListDrag } from '../composables/vUseListDrag'
 import VInput from './VInput.vue'
 import VItem from './VItem.vue'
 import type { VItemData } from './vitem'
@@ -46,7 +46,7 @@ const emit = defineEmits<{
 const list = ref<HTMLElement | null>(null)
 const byId = computed(() => new Map(props.items.map((item) => [String(item.id), item])))
 
-const { entries, draggingId, draggingHeight, ghost, startDrag, nudge } = useListDrag({
+const { entries, draggingId, draggingHeight, ghost, startDrag, nudge } = vUseListDrag({
   list,
   ids: () => props.items.map((item) => String(item.id)),
   labelOf: (id) => byId.value.get(id)?.text ?? '',

@@ -1,7 +1,7 @@
 /*
  * Look "Neobrutalista": pop neo-brutalism: thick ink outlines, hard unblurred shadows and
  * bright flat colors on a cream halftone page. It only applies while <html> has
- * data-style="brutalist" (see useLook); everything it does not set comes from style.css. Its
+ * data-style="brutalist" (see vUseLook); everything it does not set comes from style.css. Its
  * rules beat style.css's by being more specific or by coming after it, so it is imported after
  * it in main.ts.
  */

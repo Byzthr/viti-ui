@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { closeContextMenu, fitInViewport, openContextMenu, useContextMenu } from './useContextMenu'
+import { closeContextMenu, fitInViewport, openContextMenu, vUseContextMenu } from './vUseContextMenu'
 
 function fakeEvent(options: { x?: number; y?: number; prevented?: boolean; inTextField?: boolean } = {}) {
   const event = {
@@ -27,35 +27,35 @@ describe('openContextMenu', () => {
     const event = fakeEvent()
     openContextMenu(event, items, () => {})
     expect(event.preventDefault).toHaveBeenCalled()
-    expect(useContextMenu().current.value).toMatchObject({ x: 100, y: 200, items })
+    expect(vUseContextMenu().current.value).toMatchObject({ x: 100, y: 200, items })
   })
 
   it('lets an inner element that already opened its menu win', () => {
     openContextMenu(fakeEvent({ prevented: true }), items, () => {})
-    expect(useContextMenu().current.value).toBeNull()
+    expect(vUseContextMenu().current.value).toBeNull()
   })
 
   it('keeps the browser menu on text fields', () => {
     const event = fakeEvent({ inTextField: true })
     openContextMenu(event, items, () => {})
     expect(event.preventDefault).not.toHaveBeenCalled()
-    expect(useContextMenu().current.value).toBeNull()
+    expect(vUseContextMenu().current.value).toBeNull()
   })
 
   it('keeps the browser menu when no option is enabled', () => {
     openContextMenu(fakeEvent(), [{ id: 'remove', label: 'Eliminar', disabled: true }], () => {})
-    expect(useContextMenu().current.value).toBeNull()
+    expect(vUseContextMenu().current.value).toBeNull()
   })
 
   it('places it at the element when opened from the keyboard', () => {
     openContextMenu(fakeEvent({ x: 0, y: 0 }), items, () => {})
-    expect(useContextMenu().current.value).toMatchObject({ x: 56, y: 70 })
+    expect(vUseContextMenu().current.value).toMatchObject({ x: 56, y: 70 })
   })
 
   it('runs the chosen option but never a disabled one', () => {
     const onSelect = vi.fn()
     openContextMenu(fakeEvent(), items, onSelect)
-    const { select } = useContextMenu().current.value!
+    const { select } = vUseContextMenu().current.value!
     select('remove')
     select('unknown')
     select('edit')

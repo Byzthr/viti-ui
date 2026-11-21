@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { ref } from 'vue'
-import { useTableSort } from './useTableSort'
-import type { SortColumn } from './useTableSort'
+import { vUseTableSort } from './vUseTableSort'
+import type { SortColumn } from './vUseTableSort'
 
 interface Row {
   name: string
@@ -16,13 +16,13 @@ const SIZE: SortColumn<'name' | 'size'> = {
 }
 const VALUES = { name: (row: Row) => row.name, size: (row: Row) => row.size }
 
-describe('useTableSort', () => {
+describe('vUseTableSort', () => {
   it('keeps the original order until a column is chosen', () => {
     const rows = ref<Row[]>([
       { name: 'b', size: 1 },
       { name: 'a', size: 2 },
     ])
-    const { sorted, sortBy } = useTableSort(rows, VALUES)
+    const { sorted, sortBy } = vUseTableSort(rows, VALUES)
 
     expect(sorted.value.map((row) => row.name)).toEqual(['b', 'a'])
 
@@ -35,7 +35,7 @@ describe('useTableSort', () => {
       { name: 'a', size: 1 },
       { name: 'b', size: 2 },
     ]
-    const { sorted, sortBy, sortKey, sortDirection } = useTableSort(rows, VALUES, {
+    const { sorted, sortBy, sortKey, sortDirection } = vUseTableSort(rows, VALUES, {
       key: 'name',
       direction: 'asc',
     })
@@ -52,7 +52,7 @@ describe('useTableSort', () => {
 
   it('follows changes in the rows', () => {
     const rows = ref<Row[]>([{ name: 'b', size: 1 }])
-    const { sorted } = useTableSort(rows, VALUES, {
+    const { sorted } = vUseTableSort(rows, VALUES, {
       key: 'name',
       direction: 'asc',
     })

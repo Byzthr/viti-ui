@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { withPlaceholder } from './useListDrag'
+import { withPlaceholder } from './vUseListDrag'
 
 const shape = (entries: ReturnType<typeof withPlaceholder>) =>
   entries.map((entry) => (entry.kind === 'placeholder' ? '_' : entry.id)).join(' ')
