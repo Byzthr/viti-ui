@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 
 // The app's looks: the default one in style.css and the others in styles/, each scoped to its
-// data-style. Light and dark (useTheme) work the same in every one. The emoji stands for it in
+// data-style. Light and dark (vUseTheme) work the same in every one. The emoji stands for it in
 // the picker: drawn in one color, so each ends in U+FE0E (the text, not the color, version) and
 // has to be one that Segoe UI Symbol draws.
 export const LOOKS = [
@@ -55,7 +55,7 @@ export function initLook() {
   apply(resolveLook(readSaved()))
 }
 
-export function useLook() {
+export function vUseLook() {
   function select(value: Look) {
     save(value)
     apply(value)

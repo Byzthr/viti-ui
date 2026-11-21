@@ -3,7 +3,7 @@
  * first, then the roles built from them. Components use the roles (--color-*, --status-*,
  * --sidebar-*, --console-*), never a literal color, so changing the look means editing this block.
  *
- * Light and dark: the theme is the data-theme attribute of <html>, which useTheme sets from the
+ * Light and dark: the theme is the data-theme attribute of <html>, which vUseTheme sets from the
  * system setting or the choice made in the menu. Almost every role is mixed from three base
  * colors (page, surface and text), so the dark theme only redefines those and a few accents.
  */

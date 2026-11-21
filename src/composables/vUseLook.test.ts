@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { resolveLook } from './useLook'
+import { resolveLook } from './vUseLook'
 
 describe('resolveLook', () => {
   it('keeps the saved look', () => {

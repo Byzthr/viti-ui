@@ -37,7 +37,7 @@ function spaceBelow(el: HTMLElement): number {
 // (like the calendar's hour grid) instead of making the whole page longer. Measured again when
 // the window is resized or anything in the page changes size (e.g. content above it grows). It
 // must be the last thing in the page's flow: the space under it is measured from its containers.
-export function useFillHeight(el: Ref<HTMLElement | null>, { min = 320 } = {}) {
+export function vUseFillHeight(el: Ref<HTMLElement | null>, { min = 320 } = {}) {
   const height = ref<string | undefined>()
   let observer: ResizeObserver | null = null
 

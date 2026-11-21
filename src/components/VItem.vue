@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { openContextMenu } from '../composables/useContextMenu'
+import { openContextMenu } from '../composables/vUseContextMenu'
 import { MENU_ICONS, type MenuItem } from './menuItem'
 
 // Vitem: one item of a list. It can be dragged by its handle, has a check, an edit-in-place text
